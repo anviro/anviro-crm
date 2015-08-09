@@ -7,10 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.jws.WebService;
 
-@WebService(endpointInterface = "org.anviro.crm.common.webservices.AuthenticationService")
-public class AuthenticationServiceImpl implements AuthenticationService {
-
-
+@WebService(endpointInterface = "org.anviro.crm.common.webservices.AuthenticationService",
+        serviceName = "AuthenticationServiceImplService")
+public class AuthenticationServiceImpl2 implements AuthenticationService{
 
     @Autowired
     private UserService userService;
@@ -18,4 +17,5 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public AuthenticationState authenticate(String username, String password) {
         return userService.authenticate(username, password);
     }
+
 }
