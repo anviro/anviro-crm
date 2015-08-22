@@ -1,6 +1,8 @@
 package org.anviro.crm.backend.authentication.database.entity;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlElement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,22 +19,19 @@ public class User {
 
     private String email;
 
-    private String role;
+    @ElementCollection
+    private List<String> roles;
 
     private boolean blocked;
-
-    @OneToMany(fetch = FetchType.EAGER)
-    private List<Privilege> privileges;
 
     public User() {
     }
 
-    public User(String username, String password, String email, String role, List<Privilege> privileges) {
+    public User(String username, String password, String email, List<String> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
-        this.privileges = privileges;
+        this.roles = roles;
     }
 
     public Long getId() {
@@ -67,20 +66,12 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public List<Privilege> getPrivileges() {
-        return privileges;
-    }
-
-    public void setPrivileges(List<Privilege> privileges) {
-        this.privileges = privileges;
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 
     public boolean isBlocked() {

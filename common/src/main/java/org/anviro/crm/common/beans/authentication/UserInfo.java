@@ -6,9 +6,18 @@ public class UserInfo {
 
     private Long id;
     private String username;
-    private String role;
     private String email;
-    private List<String> privileges;
+    private List<String> roles;
+
+    public UserInfo() {
+    }
+
+    public UserInfo(Long id, String username, String email, List<String> roles) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -26,14 +35,6 @@ public class UserInfo {
         this.username = username;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -42,11 +43,12 @@ public class UserInfo {
         this.email = email;
     }
 
-    public List<String> getPrivileges() {
-        return privileges;
+    public List<String> getRoles() {
+        return roles;
     }
 
-    public void setPrivileges(List<String> privileges) {
-        this.privileges = privileges;
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
+
 }

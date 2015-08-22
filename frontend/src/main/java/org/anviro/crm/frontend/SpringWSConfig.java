@@ -2,6 +2,7 @@ package org.anviro.crm.frontend;
 
 import org.anviro.crm.common.webservices.AuthenticationService;
 import org.anviro.crm.common.webservices.AbstractService;
+import org.anviro.crm.common.webservices.UserManagerService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -23,6 +24,11 @@ public class SpringWSConfig {
         return (AuthenticationService) createService("AuthenticationService", AuthenticationService.class);
     }
 
+    @Bean
+    public UserManagerService userManagerService() {
+        return (UserManagerService) createService("UserManagerService", UserManagerService.class);
+    }
+
     private AbstractService createService(String serviceName, Class<?> clazz) {
         String serviceWSDL = WSDL_LOCATION.replace("{?}", serviceName);
         URL url = null;
@@ -31,7 +37,7 @@ public class SpringWSConfig {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-        QName qname = new QName(SERVICE_URI, serviceName + "ImplService");
+        QName qname = new QName(SERVICE_URI, serviceName);
 
         Service service = Service.create(url, qname);
         AbstractService abstractService = (AbstractService) service.getPort(clazz);

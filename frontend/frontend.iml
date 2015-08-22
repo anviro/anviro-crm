@@ -23,6 +23,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-beans:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:4.1.7.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:4.1.7.RELEASE" level="project" />
-    <orderEntry type="module" module-name="common" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-oxm:4.1.7.RELEASE" level="project" />
   </component>
 </module>

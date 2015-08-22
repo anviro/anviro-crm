@@ -1,12 +1,11 @@
 package org.anviro.crm.backend;
-;
-import org.anviro.crm.backend.authentication.database.entity.Privilege;
+
 import org.anviro.crm.backend.authentication.database.entity.User;
 import org.anviro.crm.backend.authentication.database.service.UserService;
 import org.anviro.crm.backend.authentication.service.AuthenticationServiceImpl;
-import org.anviro.crm.backend.authentication.service.AuthenticationServiceImpl2;
 import org.anviro.crm.common.beans.authentication.AuthenticationState;
 import org.anviro.crm.common.webservices.AuthenticationService;
+import org.anviro.crm.common.webservices.UserManagerService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,39 +15,15 @@ import java.util.List;
 public class TestAnviro {
 
     private static final String WS_AUTH_URL = "http://localhost:9999/AuthenticationService";
+    private static final String WS_USER_MANAGER_URL = "http://localhost:9999/UserManagerService";
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(DBConfig.class, WSConfig.class);
         AuthenticationService userService = (AuthenticationService) context.getBean("authenticationService");
-        //PrivilegeRepository privilegeRepository = (PrivilegeRepository) context.getBean("privilegeRepository");
+        UserManagerService userManagerService = (UserManagerService) context.getBean("userManagerService");
 
-        //userService.addUser("Andrey", "Antonina1506", "some@gmail.com", "user", null);
-        //userService.updateUser(1l, "someNewPass", null, null);
-
-//        String login = "Andrey";
-//        String password = "someNewPass";
-//
-//        userService.blockUser(1l);
-//
-//        authenticateUser(login, password, userService);
         Endpoint.publish(WS_AUTH_URL, userService);
-
-    }
-
-    private static void authenticateUser(String login, String password, UserService userService) {
-        System.out.println("Trying to authenticate user with name: " + login);
-        AuthenticationState state = userService.authenticate(login, password);
-
-        System.out.println("User " + login + " is blocked: " + state.isBlocked());
-        System.out.println("Result is: " + state.isSuccessful());
-    }
-
-    public static void printUserPrivileges(User user) {
-        List<Privilege> privileges = user.getPrivileges();
-        System.out.println("User " + user.getUsername() + " privileges");
-        for (int i = 0; i < privileges.size(); i++) {
-            System.out.println("Privilege: " + privileges.get(i).getType());
-        }
+        Endpoint.publish(WS_USER_MANAGER_URL, userManagerService);
     }
 
 }
