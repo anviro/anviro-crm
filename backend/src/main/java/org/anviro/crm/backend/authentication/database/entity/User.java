@@ -19,7 +19,7 @@ public class User {
 
     private String email;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;
 
     private boolean blocked;

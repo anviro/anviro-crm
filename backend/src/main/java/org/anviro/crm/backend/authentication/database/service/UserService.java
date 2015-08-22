@@ -29,7 +29,7 @@ public class UserService {
         if (!user.isBlocked()) {
             if (user.getPassword().equals(password)) {
                 authState.setSuccessful(true);
-                //authState.setRoles(user.getRoles());
+                authState.setRoles(user.getRoles());
             }
         } else {
             if (user.isBlocked()) {

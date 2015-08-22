@@ -14,6 +14,8 @@ import java.util.List;
 
 public class Test {
 
+
+
     public static void main(String[] args) throws JAXBException {
         ApplicationContext context = new AnnotationConfigApplicationContext(SpringWSConfig.class);
         AuthenticationService userService = (AuthenticationService) context.getBean("authenticationService");
@@ -29,10 +31,12 @@ public class Test {
         AuthenticationState state = userService.authenticate("Noname", "2828");
         System.out.println(state.isSuccessful());
 
-        /*System.out.println("Roles are: + \n");
-        for(String roles : state.getRoles()) {
-            System.out.println(roles);
-        }*/
+
+
+        System.out.println("Roles are: " + "\n");
+        for(String role : state.getRoles()) {
+            System.out.println(role);
+        }
 
 
 
