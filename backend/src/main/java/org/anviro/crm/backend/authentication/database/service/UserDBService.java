@@ -4,7 +4,7 @@ import org.anviro.crm.backend.authentication.Utils;
 import org.anviro.crm.backend.authentication.database.entity.User;
 import org.anviro.crm.backend.authentication.database.repository.UserRepository;
 import org.anviro.crm.common.beans.authentication.AuthenticationState;;
-import org.anviro.crm.common.beans.authentication.UserInfo;
+import org.anviro.crm.common.beans.authentication.UserBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserDBService {
 
     @Autowired
     private UserRepository userRepository;
@@ -40,15 +40,15 @@ public class UserService {
         return authState;
     }
 
-    public UserInfo getUser(Long id) {
-        return Utils.createUserInfo(userRepository.findOne(id));
+    public UserBean getUser(Long id) {
+        return Utils.createUserBean(userRepository.findOne(id));
     }
 
-    public List<UserInfo> getUsers() {
+    public List<UserBean> getUsers() {
         List<User> dbUsers = userRepository.findAll();
-        List<UserInfo> users = new ArrayList<>();
+        List<UserBean> users = new ArrayList<>();
         for (User user: dbUsers) {
-            users.add(Utils.createUserInfo(user));
+            users.add(Utils.createUserBean(user));
         }
         return users;
     }

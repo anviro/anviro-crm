@@ -2,17 +2,17 @@ package org.anviro.crm.common.beans.authentication;
 
 import java.util.List;
 
-public class UserInfo {
+public class UserBean {
 
     private Long id;
     private String username;
     private String email;
     private List<String> roles;
 
-    public UserInfo() {
+    public UserBean() {
     }
 
-    public UserInfo(Long id, String username, String email, List<String> roles) {
+    public UserBean(Long id, String username, String email, List<String> roles) {
         this.id = id;
         this.username = username;
         this.email = email;

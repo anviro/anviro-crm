@@ -1,16 +1,16 @@
 package org.anviro.crm.common.webservices;
 
-import org.anviro.crm.common.beans.authentication.UserInfo;
+import org.anviro.crm.common.beans.authentication.UserBean;
 
 import javax.jws.WebService;
 import java.util.List;
 
 @WebService
-public interface UserManagerService extends AbstractService {
+public interface UserService extends AbstractService {
 
-    List<UserInfo> getUsers();
+    List<UserBean> getUsers();
 
-    UserInfo getUser(Long id);
+    UserBean getUser(Long id);
 
     boolean addUser(String username, String password, String email,
                     List<String> roles);

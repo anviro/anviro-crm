@@ -1,9 +1,8 @@
 package org.anviro.crm.frontend;
 
-import org.anviro.crm.common.beans.authentication.AuthenticationState;
 import org.anviro.crm.common.webservices.AuthenticationService;
 import org.anviro.crm.common.webservices.AbstractService;
-import org.anviro.crm.common.webservices.UserManagerService;
+import org.anviro.crm.common.webservices.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +11,6 @@ import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @ComponentScan
@@ -28,8 +25,8 @@ public class SpringWSConfig {
     }
 
     @Bean
-    public UserManagerService userManagerService() {
-        return (UserManagerService) createService("UserManagerService", UserManagerService.class);
+    public UserService userManagerService() {
+        return (UserService) createService("UserService", UserService.class);
     }
 
 
