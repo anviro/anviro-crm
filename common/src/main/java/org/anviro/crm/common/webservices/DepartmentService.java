@@ -16,8 +16,8 @@ public interface DepartmentService extends AbstractService {
 
     boolean addDepartment(DepartmentBean department);
 
-    boolean updateDepartment(DepartmentBean department);
+    void updateDepartment(DepartmentBean department);
 
-    boolean removeDepartment(Long departmentId);
+    void removeDepartment(Long departmentId);
 
 }

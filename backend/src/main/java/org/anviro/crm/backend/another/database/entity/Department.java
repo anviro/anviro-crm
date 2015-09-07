@@ -13,8 +13,11 @@ public class Department {
     private String address;
     private String phone;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)
     private List<Employee> employees;
+
+    public Department() {
+    }
 
     public Department(String name, String address, String phone) {
         this.name = name;

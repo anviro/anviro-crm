@@ -1,4 +1,4 @@
-package org.anviro.crm.backend.another.database.service;
+package org.anviro.crm.backend.another.database.dbservice;
 
 import org.anviro.crm.backend.another.Utils;
 import org.anviro.crm.backend.another.database.entity.Department;
@@ -26,6 +26,16 @@ public class DepartmentDBService {
         return departments;
     }
 
+    public DepartmentBean getDeparment(Long id) {
+        Department dbDepartment = departmentRepository.findOne(id);
+        return Utils.createDepartmentBean(dbDepartment);
+    }
+
+    public DepartmentBean getDeparment(String name) {
+        Department dbDepartment = departmentRepository.findByName(name);
+        return Utils.createDepartmentBean(dbDepartment);
+    }
+
     @Transactional
     public boolean addDepartment(DepartmentBean department) {
         Department dbDepartment = departmentRepository.findByName(department.getName());
@@ -33,12 +43,24 @@ public class DepartmentDBService {
         if (dbDepartment == null) {
             Department newDepartment = new Department(department.getName(), department.getAddress(),
                     department.getPhone());
-            departmentRepository.save(newDepartment);
+            departmentRepository.saveAndFlush(newDepartment);
             return true;
         }
 
         return false;
     }
 
+    @Transactional
+    public void updateDepartment(DepartmentBean department) {
+        Department dbDepartment = departmentRepository.findOne(department.getId());
+        dbDepartment.setAddress(department.getAddress());
+        dbDepartment.setName(department.getName());
+        dbDepartment.setPhone(department.getPhone());
+        departmentRepository.saveAndFlush(dbDepartment);
+    }
 
+    @Transactional
+    public void removeDepartment(Long id) {
+        departmentRepository.delete(id);
+    }
 }

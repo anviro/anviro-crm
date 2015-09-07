@@ -20,12 +20,12 @@ public interface EmployeeService extends AbstractService {
 
     EmployeeBean getEmployee(Long employeeId);
 
-    boolean addEmployee(EmployeeBean employee, Long departmentId);
+    void addEmployee(EmployeeBean employee, Long departmentId);
 
-    boolean updateEmployee(EmployeeBean employee);
+    void updateEmployee(EmployeeBean employee);
 
-    boolean removeEmployee(Long employeeId);
+    void removeEmployee(Long employeeId);
 
-    boolean moveToAnotherDepartment(Long employeeId, Long departmentId);
+    void moveToAnotherDepartment(Long employeeId, Long departmentId);
 
 }

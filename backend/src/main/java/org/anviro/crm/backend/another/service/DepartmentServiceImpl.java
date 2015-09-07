@@ -1,6 +1,6 @@
 package org.anviro.crm.backend.another.service;
 
-import org.anviro.crm.backend.another.database.service.DepartmentDBService;
+import org.anviro.crm.backend.another.database.dbservice.DepartmentDBService;
 import org.anviro.crm.common.beans.another.DepartmentBean;
 import org.anviro.crm.common.webservices.DepartmentService;
 import org.anviro.crm.common.webservices.WebServiceConstants;
@@ -18,17 +18,20 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<DepartmentBean> getDepartments() {
+
         return departmentDBService.getDepartments();
     }
 
     @Override
-    public DepartmentBean getDepartment(Long id) {
-        return null;
+    public DepartmentBean getDepartment(Long id)
+    {
+        return departmentDBService.getDeparment(id);
     }
 
     @Override
-    public DepartmentBean getDepartmentByName(String name) {
-        return null;
+    public DepartmentBean getDepartmentByName(String name)
+    {
+        return departmentDBService.getDeparment(name);
     }
 
     @Override
@@ -37,12 +40,12 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public boolean updateDepartment(DepartmentBean department) {
-        return false;
+    public void updateDepartment(DepartmentBean department) {
+        departmentDBService.updateDepartment(department);
     }
 
     @Override
-    public boolean removeDepartment(Long departmentId) {
-        return false;
+    public void removeDepartment(Long id) {
+        departmentDBService.removeDepartment(id);
     }
 }

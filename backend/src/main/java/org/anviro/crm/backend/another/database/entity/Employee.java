@@ -21,6 +21,7 @@ public class Employee {
     private int salary;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "department_id")
     private Department department;
 
     public Long getId() {

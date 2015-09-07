@@ -1,6 +1,6 @@
 package org.anviro.crm.backend.another.service;
 
-import org.anviro.crm.backend.another.database.service.EmployeeDBService;
+import org.anviro.crm.backend.another.database.dbservice.EmployeeDBService;
 import org.anviro.crm.common.beans.another.EmployeeBean;
 import org.anviro.crm.common.webservices.EmployeeService;
 import org.anviro.crm.common.webservices.WebServiceConstants;
@@ -18,12 +18,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeBean> getEmployees() {
-        return null;
+        return employeeDBService.getEmployees();
     }
 
     @Override
     public List<EmployeeBean> getEmployeesByDepartment(Long id) {
-        return null;
+        return employeeDBService.getEmployeesByDepartment(id);
     }
 
     @Override
@@ -47,22 +47,22 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean addEmployee(EmployeeBean employee, Long departmentId) {
-        return false;
+    public void addEmployee(EmployeeBean employee, Long departmentId) {
+        employeeDBService.addEmployee(employee, departmentId);
     }
 
     @Override
-    public boolean updateEmployee(EmployeeBean employee) {
-        return false;
+    public void updateEmployee(EmployeeBean employee) {
+
     }
 
     @Override
-    public boolean removeEmployee(Long employeeId) {
-        return false;
+    public void removeEmployee(Long employeeId) {
+
     }
 
     @Override
-    public boolean moveToAnotherDepartment(Long employeeId, Long departmentId) {
-        return false;
+    public void moveToAnotherDepartment(Long employeeId, Long departmentId) {
+
     }
 }

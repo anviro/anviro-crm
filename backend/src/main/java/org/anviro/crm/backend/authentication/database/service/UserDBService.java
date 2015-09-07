@@ -1,6 +1,7 @@
 package org.anviro.crm.backend.authentication.database.service;
 
 import org.anviro.crm.backend.authentication.Utils;
+import org.anviro.crm.backend.authentication.database.entity.Log;
 import org.anviro.crm.backend.authentication.database.entity.User;
 import org.anviro.crm.backend.authentication.database.repository.UserRepository;
 import org.anviro.crm.common.beans.authentication.AuthenticationState;;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,11 +20,17 @@ public class UserDBService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private LogDBService logDBService;
+
     public AuthenticationState authenticate(String username, String password) {
         User user = userRepository.findOneByUsername(username);
         AuthenticationState authState = new AuthenticationState();
+        Log log = new Log(new Date(), username);
 
         if (user == null) {
+            log.setMessage("User \"" + username + "\" tried to enter the system. Such user doesn`t exist!");
+            logDBService.addLoginLog(log);
             return authState;
         }
 
@@ -30,12 +38,16 @@ public class UserDBService {
             if (user.getPassword().equals(password)) {
                 authState.setSuccessful(true);
                 authState.setRoles(user.getRoles());
+                log.setMessage("User \"" + username + "\" successfully entered the system!");
             }
         } else {
             if (user.isBlocked()) {
                 authState.setBlocked(true);
+                log.setMessage("User \"" + username + "\" tried to enter the system, but the user is blocked!");
             }
         }
+
+        logDBService.addLoginLog(log);
 
         return authState;
     }
