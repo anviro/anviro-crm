@@ -28,22 +28,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<EmployeeBean> getEmployeesByPosition(String position) {
-        return null;
+
+        return employeeDBService.getEmployeesByPosition(position);
     }
 
     @Override
     public List<EmployeeBean> getEmployeesByName(String name) {
-        return null;
+        return employeeDBService.getEmployeesByName(name);
     }
 
     @Override
     public List<EmployeeBean> getEmployeesByPhone(String phone) {
-        return null;
+        return employeeDBService.getEmployeesByPhone(phone);
     }
 
     @Override
     public EmployeeBean getEmployee(Long employeeId) {
-        return null;
+        return employeeDBService.getEmployee(employeeId);
     }
 
     @Override
@@ -53,16 +54,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void updateEmployee(EmployeeBean employee) {
-
+        employeeDBService.updateEmployee(employee);
     }
 
     @Override
     public void removeEmployee(Long employeeId) {
-
+        employeeDBService.removeEmployee(employeeId);
     }
 
     @Override
     public void moveToAnotherDepartment(Long employeeId, Long departmentId) {
-
+        employeeDBService.moveToAnotherDepartment(employeeId, departmentId);
     }
 }
